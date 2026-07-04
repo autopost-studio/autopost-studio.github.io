@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Authorization Complete - AutoPost-Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23fe2c55'/%3E%3Ctext x='50' y='68' font-size='56' font-family='Arial' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<style>
+  body {
+    font-family: -apple-system, Segoe UI, Arial, sans-serif;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 0 20px;
+    text-align: center;
+    color: #222;
+  }
+  .icon-row svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 16px;
+  }
+  .checkmark {
+    font-size: 48px;
+    color: #2ecc71;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 22px; margin-bottom: 8px; }
+  p { color: #555; }
+  code {
+    display: block;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 20px;
+    word-break: break-all;
+    font-size: 12px;
+    text-align: left;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+  <div class="icon-row">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AutoPost-Studio icon">
+      <rect width="100" height="100" rx="22" fill="#fe2c55"/>
+      <text x="50" y="68" font-size="56" font-family="Arial" font-weight="700" fill="#ffffff" text-anchor="middle">A</text>
+    </svg>
+  </div>
+  <div class="checkmark">&#10003;</div>
+  <h1>Authorization Successful</h1>
+  <p>You can close this tab and return to AutoPost-Studio.</p>
+  <p id="codeLabel" style="display:none;">Authorization code received:</p>
+  <code id="codeBox"></code>
+
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+  if (code) {
+    document.getElementById("codeLabel").style.display = "block";
+    document.getElementById("codeBox").textContent = code;
+
+    window.location.href = 'http://localhost:5000/auth/callback?' + window.location.search.slice(1);
+  }
+  </script>
+</body>
+</html>
